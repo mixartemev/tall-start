@@ -52,5 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 
-    Route::view('/', 'welcome')->middleware('verified')->name('home');
+    Route::middleware('verified')->group(function () {
+        Route::view('/', 'welcome')->name('home');
+        Route::view('users', 'user.index');
+    });
+
 });
