@@ -21,8 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
-
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
         ->name('login');
@@ -31,11 +29,13 @@ Route::middleware('guest')->group(function () {
         ->name('register');
 });
 
+
 Route::get('password/reset', Email::class)
     ->name('password.request');
 
 Route::get('password/reset/{token}', Reset::class)
     ->name('password.reset');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('email/verify', Verify::class)
@@ -44,13 +44,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
-});
 
-Route::middleware('auth')->group(function () {
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')
         ->name('verification.verify');
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+
+    Route::view('/', 'welcome')->middleware('verified')->name('home');
 });
