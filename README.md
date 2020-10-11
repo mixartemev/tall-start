@@ -1,6 +1,6 @@
 ## About TALL-start
 
-It's a starting template for TALL stack app
+It's a starting point for create TALL stack apps.
 - [Tailwind CSS](https://tailwindcss.com)
 - [Alpine.js](https://github.com/alpinejs/alpine)
 - [Laravel](https://laravel.com)
